@@ -24,7 +24,7 @@ public class DisplaySyncService : IDisplaySyncService
 
 	private void TimerServiceOnItemTick(object? _, EventArgs __)
 	{
-		if (DisplayIndex <= MaxIndex)
+		if (DisplayIndex >= MaxIndex - 1)
 		{
 			DisplayIndex = 0;
 		}
