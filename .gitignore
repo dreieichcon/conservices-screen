@@ -1,0 +1,9 @@
+// Ignore idea files
+**/.idea/**
+
+// Ignore .net build files
+**/bin/**
+**/obj/**
+
+// Ignore user files
+*.DotSettings.user
