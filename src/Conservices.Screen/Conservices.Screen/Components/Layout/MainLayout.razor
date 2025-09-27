@@ -1,0 +1,80 @@
+﻿@using System.Text
+@using Conservices.Screen.Interfaces.Timers
+@inherits LayoutComponentBase
+@inject ITimerService TimerService
+
+<style>
+    @_theme;
+</style>
+
+<div class="page">
+    <div class="main-view">
+        @Body
+    </div>
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
+
+@code{
+
+    private MarkupString _theme;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _theme = GetTheme();
+        TimerService.TickFiveMinutes += OnFiveMinutesElapsed;
+    }
+
+    private void OnFiveMinutesElapsed(object? _, EventArgs __)
+    {
+        _theme = GetTheme();
+        InvokeAsync(StateHasChanged);
+    }
+
+    private MarkupString GetTheme()
+    {
+        var time = DateTime.Now;
+
+        if (time.TimeOfDay.Hours > 15)
+            return CompileThemeString(DarkTheme);
+
+        return CompileThemeString(LightTheme);
+    }
+
+    private MarkupString CompileThemeString(Dictionary<string, string> themeValues)
+    {
+        var sb = new StringBuilder();
+
+        sb.AppendLine(":root {");
+
+        foreach (var kvp in themeValues)
+        {
+            sb.AppendLine($"{kvp.Key}: {kvp.Value};");
+        }
+
+        sb.Append("}");
+
+        return (MarkupString)sb.ToString();
+    }
+
+    private Dictionary<string, string> LightTheme = new()
+    {
+        { "--background", "#def" },
+        { "--paper", "#eff" },
+        { "--paper-border", "#fff"},
+        { "--foreground", "#000" },
+    };
+
+    private Dictionary<string, string> DarkTheme = new()
+    {
+        { "--background", "#333" },
+        { "--paper", "#444" },
+        { "--paper-border", "#555" },
+        { "--foreground", "#fff" },
+    };
+
+}

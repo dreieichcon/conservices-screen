@@ -1,0 +1,14 @@
+.header-bar{
+    border-bottom: 2px solid var(--primary);
+    height: 11vh !important;
+    max-height: 11vh !important;
+    flex-grow: 1;
+}
+
+.header-text{
+    font-size: 8vh !important;
+}
+
+.header-text-sm{
+    font-size: 6vh !important;
+}

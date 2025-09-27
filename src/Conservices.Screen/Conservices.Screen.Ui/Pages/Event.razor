@@ -1,0 +1,52 @@
+@page "/event/{EventId}"
+@using Conservices.Screen.Interfaces.Conservices
+@using Conservices.Screen.Models.Convention
+
+@inject IConventionService ConventionService
+
+@if (Convention is null)
+{
+    <div class="d-flex flex-grow justify-content-center align-items-center w-100">
+        <h3>Convention @EventId does not exist!</h3>
+    </div>
+    
+}
+else
+{
+    <div class="d-flex w-100 h-100 flex-column align-items-center justify-content-center">
+        <div class="paper el-1 w-25 d-flex flex-column">
+            <div class="d-flex flex-column align-items-center">
+                <div class="h1">@Convention.Name</div>
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                <div class="h3">@Convention.ConventionStart - @Convention.ConventionEnd</div>
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                Select a module to display information
+            </div>
+        </div>
+        @if (Convention.ConventionModules.Any(x => x.name == "Programm"))
+        {
+            <a class="d-flex el-1 w-25 paper justify-content-center" href="event/@EventId/program">
+                <div class="h2">Program</div>
+            </a>
+            
+        }
+    </div>
+   
+}
+
+
+@code {
+
+    [Parameter]
+    public required string EventId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Convention = await ConventionService.GetConventionAsync(EventId);
+    }
+
+    private Convention? Convention { get; set; }
+
+}

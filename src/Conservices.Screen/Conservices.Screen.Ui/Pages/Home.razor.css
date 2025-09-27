@@ -1,0 +1,22 @@
+.page-title{
+    max-height: 5vh !important;
+    height: 5vh !important;
+    font-size: 2.5vw;
+    margin-right: 1rem;
+    margin-bottom: 1rem !important;
+}
+
+.page-title-image{
+    max-height: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+}
+
+.page-subtitle{
+    font-size: 1vw;
+    margin-left: 1rem;
+}
+
+.page-subtitle-img{
+    max-height: 5rem !important;
+}

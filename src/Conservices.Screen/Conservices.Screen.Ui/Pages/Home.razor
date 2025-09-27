@@ -1,0 +1,48 @@
+@page "/"
+@using Conservices.Screen.Interfaces.Conservices
+@using Conservices.Screen.Models.Convention
+
+@inject IConventionService ConventionService
+
+<div class="d-flex flex-column align-items-center w-100">
+    <div class="d-flex flex-row align-items-baseline">
+        <div class="page-title">
+            <img class="page-title-image" src="img/conservices_questlog.png" alt="QUESTLOG Logo"/>
+        </div>
+    </div>
+    <div class="d-flex flex-row page-subtitle">
+        select a convention to continue:
+    </div>
+    <div class="d-flex w-100 flex-column align-items-center">
+        @foreach (var e in Conventions)
+        {
+            <EventLink Event="e"></EventLink>
+        }
+    </div>
+</div>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await InvokeAsync(StateHasChanged);
+        Conventions = await ConventionService.GetConventionsAsync();
+    }
+
+    private IEnumerable<Convention> Conventions { get; set; } =
+    [
+        new()
+        {
+            Name = "DreieichCon 2025",
+            Id = Guid.NewGuid()
+                .ToString(),
+        },
+        new()
+        {
+            Name = "BuCon 2025",
+            Id = Guid.NewGuid()
+                .ToString(),
+        }
+    ];
+
+}

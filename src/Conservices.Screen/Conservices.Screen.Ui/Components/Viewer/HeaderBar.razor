@@ -1,0 +1,24 @@
+@using Conservices.Screen.Interfaces.Timers
+@using Conservices.Screen.Models.Convention
+@inject ITimerService TimerService
+
+<div class="d-flex flex-row justify-content-between header-bar align-items-baseline">
+    <div class="header-text">@Convention.Name</div>
+    <div class="header-text-sm">@Title</div>
+    <div class="header-text">@DateTime.UtcNow.ToString("HH:mm:ss")</div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public required Convention Convention { get; set; }
+    
+    [Parameter]
+    public required string Title { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        TimerService.TickSecond += async (_, _) => await InvokeAsync(StateHasChanged);
+    }
+
+}

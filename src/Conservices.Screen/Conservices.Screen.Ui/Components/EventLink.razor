@@ -1,0 +1,16 @@
+@using Conservices.Screen.Models
+@using Conservices.Screen.Models.Convention
+
+<a href="event/@Event.Id" class="d-flex w-50 justify-content-center">
+    <div class="paper el-1 w-50 link-title">
+        @Event.Name
+    </div>
+</a>
+
+
+@code {
+
+    [Parameter]
+    public required Convention Event { get; set; }
+
+}
