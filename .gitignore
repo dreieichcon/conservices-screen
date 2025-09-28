@@ -7,3 +7,6 @@
 
 // Ignore user files
 *.DotSettings.user
+
+// Ignore env :)
+**/.env

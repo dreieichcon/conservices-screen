@@ -1,7 +1,0 @@
-﻿services:
-  conservices.screen:
-    image: conservices.screen
-    build:
-      context: .
-      dockerfile: Conservices.Screen/Dockerfile
-

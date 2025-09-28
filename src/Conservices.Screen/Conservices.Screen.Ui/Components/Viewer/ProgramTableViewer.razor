@@ -16,7 +16,7 @@
         <tr>
             <th class="col-title">Titel</th>
             <th class="col-type">Typ</th>
-            <th class="">Ort</th>
+            <th class="col-place">Ort</th>
             <th class="">Startzeit</th>
         </tr>
         </thead>
@@ -48,21 +48,21 @@
                         </div>
                     </div>
                 </td>
-                <td class="td-size td-place">
+                <td class="td-size td-label">
                     <div class="td-text-large">
                         @item.Label?.Name
                     </div>
                 </td>
                 <td class="td-size td-place">
-                    <div class="d-flex flex-row justify-content-between w-100 align-items-center h-100">
+                    <div class="d-flex flex-row-reverse justify-content-between w-100 align-items-center h-100">
                         <div class="td-text-large mw-75 w-75">
                             @item.Table?.Name
                         </div>
-                        <div class="mw-25 w-25">
+                        <div class="flex-lg-row">
                             @if (item.Table is { Accessible: true })
                             {
                                 <div class="wheelchair">
-                                    <img src="/img/wheelchair.svg" alt="wheelchair symbol"/>
+                                    <RadzenIcon Icon="Accessible_Forward" Style="font-size: 3rem;"/>
                                 </div>
                             }
                         </div>
@@ -72,7 +72,7 @@
                     <div class="d-flex flex-column">
                         <div class="time-start">
                             @if (ProgramItems.GroupBy(x => x.Start.Day)
-                                     .Count() == 1)
+                                         .Count() == 1)
                             {
                                 @item.Start.ToLocalTime().ToString("HH:mm")
                             }

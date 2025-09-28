@@ -1,0 +1,15 @@
+﻿services:
+  conservices-screen:
+    image: hub.demolite.de/demoreg/conservices-screen
+    container_name: conservices-screen
+    restart: always
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Conservices.Screen/Dockerfile
+      args:
+        - CERT_PASS=${cert_pass}
+    ports:
+      - "8090:80"
+      - "8091:441"

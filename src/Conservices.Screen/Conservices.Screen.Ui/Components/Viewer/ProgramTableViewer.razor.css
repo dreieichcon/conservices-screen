@@ -45,6 +45,14 @@ thead{
     padding-left: 1rem;
 }
 
+.col-place{
+    width: 15% !important;
+}
+
+.col-place{
+    padding-left: 3rem;
+}
+
 .td-text-large{
     font-size: 2.5rem;
 }
@@ -94,15 +102,20 @@ thead{
 
 .wheelchair{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 5rem;
     aspect-ratio: 1/1;
     margin-right: 0.5rem;
+    font-size: 2rem;
 }
 
-.wheelchair img{
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
+.time-start{
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.time-delta{
+    font-size: 1.5rem;
+    font-weight: 500;
 }

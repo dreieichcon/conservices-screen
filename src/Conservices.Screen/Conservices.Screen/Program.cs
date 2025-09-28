@@ -8,12 +8,16 @@ using Conservices.Screen.Services.Conservices;
 using Conservices.Screen.Services.Display;
 using Conservices.Screen.Services.Timers;
 using Conservices.Screen.Ui.Pages;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
 	.AddInteractiveServerComponents();
+
+builder.Services.AddRadzenComponents();
+
 
 builder.Services.AddSingleton<ITimerService, TimerService>();
 builder.Services.AddSingleton<IDisplaySyncService, DisplaySyncService>();

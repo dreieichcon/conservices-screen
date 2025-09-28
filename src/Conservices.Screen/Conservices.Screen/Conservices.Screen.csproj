@@ -20,4 +20,8 @@
       <ProjectReference Include="..\Conservices.Screen.Ui\Conservices.Screen.Ui.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Radzen.Blazor" Version="7.4.2" />
+    </ItemGroup>
+
 </Project>
