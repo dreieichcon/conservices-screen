@@ -26,7 +26,7 @@
     protected override async Task OnInitializedAsync()
     {
         await InvokeAsync(StateHasChanged);
-        Conventions = await ConventionService.GetConventionsAsync();
+        Conventions = await ConventionService.GetAllAsync();
     }
 
     private IEnumerable<Convention> Conventions { get; set; } =

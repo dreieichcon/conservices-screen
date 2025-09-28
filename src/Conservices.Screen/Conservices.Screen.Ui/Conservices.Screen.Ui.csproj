@@ -19,6 +19,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Conservices.Screen.Interfaces\Conservices.Screen.Interfaces.csproj" />
       <ProjectReference Include="..\Conservices.Screen.Models\Conservices.Screen.Models.csproj" />
+        <ProjectReference Include="..\Conservices.Screen.Util\Conservices.Screen.Util.csproj" />
     </ItemGroup>
 
 </Project>

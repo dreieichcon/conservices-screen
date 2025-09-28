@@ -5,6 +5,25 @@
     flex-grow: 1;
 }
 
+.header-image-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-image-container{
+    max-height: 10vh !important;
+    height: 10vh !important;
+}
+
+.header-image-container img{
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: contain;
+    border-radius: 50% !important;
+    border: 2px solid var(--primary);
+}
+
 .header-text{
     font-size: 8vh !important;
 }

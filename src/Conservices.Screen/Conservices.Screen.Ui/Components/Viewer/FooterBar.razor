@@ -1,0 +1,10 @@
+<div class="d-flex flex-row justify-content-between footer-bar align-items-baseline footer-text">
+    @ChildContent
+</div>
+
+@code {
+
+[Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}

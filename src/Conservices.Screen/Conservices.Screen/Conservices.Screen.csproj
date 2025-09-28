@@ -20,8 +20,4 @@
       <ProjectReference Include="..\Conservices.Screen.Ui\Conservices.Screen.Ui.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="wwwroot\img\" />
-    </ItemGroup>
-
 </Project>

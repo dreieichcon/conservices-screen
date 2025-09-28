@@ -21,6 +21,9 @@ builder.Services.AddSingleton<IDisplaySyncService, DisplaySyncService>();
 builder.Services.AddSingleton<IConventionRepository, ConventionRepository>();
 builder.Services.AddSingleton<IConventionService, ConventionService>();
 
+builder.Services.AddSingleton<IProgramRepository, ProgramRepository>();
+builder.Services.AddSingleton<IProgramService, ProgramService>();
+
 var app = builder.Build();
 
 // initialize Timer

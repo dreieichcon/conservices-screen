@@ -4,7 +4,7 @@ namespace Conservices.Screen.Interfaces.Conservices;
 
 public interface IConventionService
 {
-	public Task<IEnumerable<Convention>> GetConventionsAsync();
+	public Task<IEnumerable<Convention>> GetAllAsync();
 	
-	public Task<Convention?> GetConventionAsync(string id);
+	public Task<Convention?> GetAsync(string id);
 }

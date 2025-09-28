@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conservices.Screen.Models",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conservices.Screen.Repositories", "Conservices.Screen.Repositories\Conservices.Screen.Repositories.csproj", "{B20F8ABE-560D-459B-BE97-8E338F9E15D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conservices.Screen.Util", "Conservices.Screen.Util\Conservices.Screen.Util.csproj", "{F57250A1-78AB-4ADA-A824-0481C1C4FD53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{B20F8ABE-560D-459B-BE97-8E338F9E15D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B20F8ABE-560D-459B-BE97-8E338F9E15D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B20F8ABE-560D-459B-BE97-8E338F9E15D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F57250A1-78AB-4ADA-A824-0481C1C4FD53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F57250A1-78AB-4ADA-A824-0481C1C4FD53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F57250A1-78AB-4ADA-A824-0481C1C4FD53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F57250A1-78AB-4ADA-A824-0481C1C4FD53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0B3FCE02-A295-4AB5-ACD4-012F092C1432} = {6DC8AE58-FD47-4954-AEC2-A0C5062E92CC}
@@ -60,5 +66,6 @@ Global
 		{A76C281E-9C83-4CDF-ACE9-E3338421BFEE} = {CEF5BD40-60CE-48CB-8585-84E6B08F21EA}
 		{93CBD8D4-BE9C-45C3-B0B4-3C65D55EA9DE} = {117FD899-FE1C-40E4-B493-BEBECB7066E9}
 		{B20F8ABE-560D-459B-BE97-8E338F9E15D9} = {CEF5BD40-60CE-48CB-8585-84E6B08F21EA}
+		{F57250A1-78AB-4ADA-A824-0481C1C4FD53} = {117FD899-FE1C-40E4-B493-BEBECB7066E9}
 	EndGlobalSection
 EndGlobal

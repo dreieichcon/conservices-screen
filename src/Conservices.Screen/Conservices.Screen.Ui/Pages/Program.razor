@@ -1,16 +1,21 @@
 @page "/event/{EventId}/program"
 @using Conservices.Screen.Interfaces.Conservices
-@using Conservices.Screen.Interfaces.Display
 @using Conservices.Screen.Models.Convention
 
 @inject IConventionService ConventionService
-@inject IDisplaySyncService DisplaySyncService
+
 
 <div class="d-flex flex-column justify-content-between w-100 h-100">
-    <HeaderBar Convention="@Convention" Title="Programm"/>
-    <ProgramTableViewer></ProgramTableViewer>
-    <div class="h1">@DisplaySyncService.DisplayIndex</div>
-    <div>Joar, footer hier</div>
+    <HeaderBar Convention="@Convention"/>
+    <ProgramTableViewer EventId="@EventId"></ProgramTableViewer>
+    <FooterBar>
+        <div>
+            Programm
+        </div>
+        <div>
+            
+        </div>
+    </FooterBar>
 </div>
 @code {
 
@@ -19,8 +24,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        DisplaySyncService.DisplayChanged += async (_, _) => await InvokeAsync(StateHasChanged);
-        Convention = await ConventionService.GetConventionAsync(EventId);
+        Convention = await ConventionService.GetAsync(EventId);
     }
 
     private Convention? Convention { get; set; }

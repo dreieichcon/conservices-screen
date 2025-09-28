@@ -14,31 +14,31 @@ public class Convention
 	public required string Name { get; set; }
 
 	[JsonPropertyName("begin")]
-	public string ConventionStart { get; set; }
+	public DateTime? ConventionStart { get; set; }
 
 	[JsonPropertyName("end")]
-	public string ConventionEnd { get; set; }
+	public DateTime? ConventionEnd { get; set; }
 
 	[JsonPropertyName("public")]
-	public int IsPublic { get; set; }
+	public bool IsPublic { get; set; }
 
 	[JsonPropertyName("publish_begin")]
-	public string publish_begin { get; set; }
+	public DateTime? PublishBegin { get; set; }
 
 	[JsonPropertyName("publish_end")]
-	public string publish_end { get; set; }
+	public DateTime? PublishEnd { get; set; }
 
 	[JsonPropertyName("application_begin")]
-	public string application_begin { get; set; }
+	public DateTime? ApplicationBegin { get; set; }
 
 	[JsonPropertyName("application_end")]
-	public string application_end { get; set; }
+	public DateTime? ApplicationEnd { get; set; }
 
 	[JsonPropertyName("join_begin")]
-	public string join_begin { get; set; }
+	public DateTime? join_begin { get; set; }
 
 	[JsonPropertyName("join_end")]
-	public string join_end { get; set; }
+	public DateTime? join_end { get; set; }
 
 	[JsonPropertyName("homepage")]
 	public string homepage { get; set; }

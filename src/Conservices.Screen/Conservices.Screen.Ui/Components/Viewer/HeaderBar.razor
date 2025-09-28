@@ -1,11 +1,17 @@
 @using Conservices.Screen.Interfaces.Timers
 @using Conservices.Screen.Models.Convention
+@using Conservices.Screen.Util
 @inject ITimerService TimerService
 
-<div class="d-flex flex-row justify-content-between header-bar align-items-baseline">
-    <div class="header-text">@Convention.Name</div>
-    <div class="header-text-sm">@Title</div>
-    <div class="header-text">@DateTime.UtcNow.ToString("HH:mm:ss")</div>
+<div class="d-flex flex-row justify-content-between header-bar align-items-center">
+    <div class="header-image-name">
+        <div class="header-image-container">
+            <img src="https://conservices.de/assets/img/events/@Convention.logo"
+                 alt="Logo for @Convention.Name"/>
+        </div>
+        <div class="header-text">@Convention.Name</div>
+    </div>
+    <div class="header-text">@DateTime.UtcNow.ToLocal().ToString("HH:mm:ss")</div>
 </div>
 
 
@@ -13,9 +19,7 @@
 
     [Parameter]
     public required Convention Convention { get; set; }
-    
-    [Parameter]
-    public required string Title { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         TimerService.TickSecond += async (_, _) => await InvokeAsync(StateHasChanged);
