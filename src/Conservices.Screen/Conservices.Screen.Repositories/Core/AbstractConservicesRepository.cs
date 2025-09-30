@@ -1,4 +1,5 @@
 using Conservices.Screen.Repositories.Serialization;
+using Conservices.Screen.Repositories.Serialization.Conservices;
 using Demolite.Http.Repository;
 
 namespace Conservices.Screen.Repositories.Core;

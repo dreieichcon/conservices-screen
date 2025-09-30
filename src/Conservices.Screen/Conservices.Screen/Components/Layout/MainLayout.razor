@@ -1,7 +1,9 @@
 ﻿@using System.Text
+@using Conservices.Screen.Interfaces.Repositories
 @using Conservices.Screen.Interfaces.Timers
 @inherits LayoutComponentBase
 @inject ITimerService TimerService
+@inject ISunRepository SunRepository
 
 <style>
     @_theme;
@@ -25,21 +27,22 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _theme = GetTheme();
-        TimerService.TickFiveMinutes += OnFiveMinutesElapsed;
+        _theme = await GetTheme();
+        TimerService.TickFiveMinutes += async(_, _) => await OnFiveMinutesElapsed();
     }
 
-    private void OnFiveMinutesElapsed(object? _, EventArgs __)
+    private async Task OnFiveMinutesElapsed()
     {
-        _theme = GetTheme();
-        InvokeAsync(StateHasChanged);
+        _theme = await GetTheme();
+        await InvokeAsync(StateHasChanged);
     }
 
-    private MarkupString GetTheme()
+    private async Task<MarkupString> GetTheme()
     {
-        var time = DateTime.Now;
+        var now = TimeOnly.FromDateTime(DateTime.UtcNow);
+        var sunState = await SunRepository.GetSunStateAsync();
 
-        if (time.TimeOfDay.Hours > 15)
+        if (now >= sunState.Dusk || now < sunState.Sunrise)
             return CompileThemeString(DarkTheme);
 
         return CompileThemeString(LightTheme);

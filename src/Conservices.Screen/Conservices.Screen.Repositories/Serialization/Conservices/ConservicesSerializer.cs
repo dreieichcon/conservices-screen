@@ -1,7 +1,7 @@
 using System.Text.Json;
 using Demolite.Http.Serialization;
 
-namespace Conservices.Screen.Repositories.Serialization;
+namespace Conservices.Screen.Repositories.Serialization.Conservices;
 
 public class ConservicesSerializer : AbstractSerializer
 {

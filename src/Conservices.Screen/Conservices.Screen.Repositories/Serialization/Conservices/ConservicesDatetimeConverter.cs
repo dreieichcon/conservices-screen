@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Conservices.Screen.Repositories.Serialization;
+namespace Conservices.Screen.Repositories.Serialization.Conservices;
 
 public class ConservicesDatetimeConverter : JsonConverter<DateTime?>
 {

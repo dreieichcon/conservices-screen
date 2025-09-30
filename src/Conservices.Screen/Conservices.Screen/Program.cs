@@ -4,6 +4,7 @@ using Conservices.Screen.Interfaces.Display;
 using Conservices.Screen.Interfaces.Repositories;
 using Conservices.Screen.Interfaces.Timers;
 using Conservices.Screen.Repositories.Core;
+using Conservices.Screen.Repositories.Sun;
 using Conservices.Screen.Services.Conservices;
 using Conservices.Screen.Services.Display;
 using Conservices.Screen.Services.Timers;
@@ -22,6 +23,7 @@ builder.Services.AddRadzenComponents();
 builder.Services.AddSingleton<ITimerService, TimerService>();
 builder.Services.AddSingleton<IDisplaySyncService, DisplaySyncService>();
 
+builder.Services.AddSingleton<ISunRepository, SunRepository>();
 builder.Services.AddSingleton<IConventionRepository, ConventionRepository>();
 builder.Services.AddSingleton<IConventionService, ConventionService>();
 

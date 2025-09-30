@@ -2,6 +2,8 @@
 USER $APP_UID
 WORKDIR /app
 
+ENV TZ=Europe/Berlin
+
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 ARG CERT_PASS
