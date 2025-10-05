@@ -28,6 +28,9 @@ public class ProgramItem
 
 	[JsonPropertyName("start")]
 	public DateTime Start { get; set; }
+	
+	[JsonIgnore]
+	public DateTime End => Start.Add(Duration);
 
 	[JsonPropertyName("duration")]
 	public TimeSpan Duration { get; set; }

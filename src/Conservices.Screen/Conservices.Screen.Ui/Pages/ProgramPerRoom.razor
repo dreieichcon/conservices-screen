@@ -1,0 +1,52 @@
+@page "/event/{EventId}/program/rooms"
+@using Conservices.Screen.Interfaces.Conservices
+@using Conservices.Screen.Interfaces.Timers
+@using Conservices.Screen.Models.Program
+
+@inject IProgramService ProgramService
+@inject ITimerService TimerService
+
+<div class="display-wrapper">
+    @foreach (var item in ProgramItems.Where(x => x.Table != null)
+                  .GroupBy(x => x.Table!.Name))
+    {
+        <div class="room-view">
+            <div class="room-name">
+                @item.Key
+            </div>
+            <div class="">
+                @GetCurrentInRoom(item.Key)?.Title
+            </div>
+            <div>@GetNextInRoom(item.Key)?.Title</div>
+        </div>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public required string EventId { get; set; }
+
+    private IEnumerable<ProgramItem> ProgramItems { get; set; } = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        await ReloadProgramItems();
+        TimerService.TickFiveMinutes += async (_, _) => await ReloadProgramItems();
+    }
+
+    private async Task ReloadProgramItems()
+    {
+        ProgramItems = (await ProgramService.GetAllAsync(EventId)).Where(x => x.Start.Add(x.Duration) >= DateTime.Now);
+    }
+
+    private ProgramItem? GetCurrentInRoom(string name)
+    {
+        return ProgramItems.FirstOrDefault(x => x.Table?.Name == name && DateTime.UtcNow > x.Start && DateTime.UtcNow < x.End);
+    }
+
+    private ProgramItem? GetNextInRoom(string name)
+    {
+        return ProgramItems.FirstOrDefault(x => x.Table?.Name == name && x.Start > DateTime.UtcNow);
+    }
+}

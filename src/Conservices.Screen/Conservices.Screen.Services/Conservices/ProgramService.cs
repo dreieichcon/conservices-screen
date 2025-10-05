@@ -11,7 +11,7 @@ public class ProgramService(IProgramRepository programRepository)
 
 	protected override async Task<IEnumerable<ProgramItem>> GetItemsForConventionAsync(string eventId)
 	{
-		return (await programRepository.GetAllAsync(eventId)).Where(x => x.Start > DateTime.Now);
+		return await programRepository.GetAllAsync(eventId);
 	}
 
 	public async Task<IEnumerable<ProgramItem>> GetAllAsync(string eventId)

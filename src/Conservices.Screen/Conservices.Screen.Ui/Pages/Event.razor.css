@@ -1,0 +1,10 @@
+.mobile-box{
+    width: 50% !important;
+    justify-content: center;
+}
+
+@media screen and (max-width: 500px){
+    .mobile-box{
+        width: 100% !important;
+    }
+}

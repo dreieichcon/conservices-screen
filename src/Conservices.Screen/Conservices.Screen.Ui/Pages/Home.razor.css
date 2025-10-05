@@ -2,6 +2,7 @@
     max-height: 5vh !important;
     height: 5vh !important;
     font-size: 2.5vw;
+    max-width: 90vw !important;
     margin-right: 1rem;
     margin-bottom: 1rem !important;
 }
@@ -9,11 +10,12 @@
 .page-title-image{
     max-height: 100% !important;
     height: 100% !important;
+    max-width: 100% !important;
     object-fit: contain;
 }
 
 .page-subtitle{
-    font-size: 1vw;
+    font-size: 1rem;
     margin-left: 1rem;
 }
 

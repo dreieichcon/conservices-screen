@@ -1,3 +1,13 @@
 .link-title{
     font-size: 2rem;
 }
+
+.mobile-link{
+    width: 50% !important;
+}
+
+@media screen and (max-width: 500px){
+    .mobile-link{
+        width: 95% !important;
+    }
+}
