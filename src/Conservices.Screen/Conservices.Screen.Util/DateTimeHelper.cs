@@ -38,7 +38,7 @@ public static class DateTimeHelper
 			_ => date.DayOfWeek.ToString(),
 		};
 
-		return $"{day} ({date:dd.MM}) - {date:HH:mm}";
+		return $"{day} {date:HH:mm}";
 	}
 
 	private static string TimeDeltaInternal(this DateTime date)

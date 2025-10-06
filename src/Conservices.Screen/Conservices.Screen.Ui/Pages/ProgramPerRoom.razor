@@ -6,20 +6,22 @@
 @inject IProgramService ProgramService
 @inject ITimerService TimerService
 
-<div class="display-wrapper">
-    @foreach (var item in ProgramItems.Where(x => x.Table != null)
-                  .GroupBy(x => x.Table!.Name))
-    {
-        <div class="room-view">
-            <div class="room-name">
-                @item.Key
+<div class="content-wrapper">
+    <div class="paper h2 page-title">
+        Programmübersicht
+    </div>
+    <div class="display-wrapper">
+        @foreach (var item in ProgramItems.Where(x => x.Table != null).GroupBy(x => x.Table!.Name).OrderBy(x => x.Key))
+        {
+            <div class="room-view paper mb-3 el-1">
+                <div class="p-3 h4" style="border-bottom: 1px solid var(--primary);">
+                    @item.Key
+                </div>
+                <CurrentItemSmall CurrentItem="@GetCurrentInRoom(item.Key)"/>
+                <NextItemSmall NextItem="@GetNextInRoom(item.Key)"/>
             </div>
-            <div class="">
-                @GetCurrentInRoom(item.Key)?.Title
-            </div>
-            <div>@GetNextInRoom(item.Key)?.Title</div>
-        </div>
-    }
+        }
+    </div>
 </div>
 
 @code {
@@ -32,12 +34,13 @@
     protected override async Task OnInitializedAsync()
     {
         await ReloadProgramItems();
-        TimerService.TickFiveMinutes += async (_, _) => await ReloadProgramItems();
+        TimerService.TickOneMinute += async (_, _) => await ReloadProgramItems();
     }
 
     private async Task ReloadProgramItems()
     {
         ProgramItems = (await ProgramService.GetAllAsync(EventId)).Where(x => x.Start.Add(x.Duration) >= DateTime.Now);
+        await InvokeAsync(StateHasChanged);
     }
 
     private ProgramItem? GetCurrentInRoom(string name)

@@ -11,6 +11,10 @@ html, body {
     padding: 0 !important;
 }
 
+::-webkit-scrollbar{
+    display: none !important;
+}
+
 .h1{
     font-size: 2.5rem;
 }

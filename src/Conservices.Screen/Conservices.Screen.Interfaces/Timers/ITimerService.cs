@@ -7,6 +7,8 @@ public interface ITimerService
 	public event EventHandler TickItem;
 
 	public event EventHandler TickPage;
+
+	public event EventHandler TickOneMinute;
 	
 	public event EventHandler? TickFiveMinutes;
 }

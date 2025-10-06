@@ -1,0 +1,29 @@
+﻿@using Conservices.Screen.Models.Program
+@using Conservices.Screen.Util
+
+<div class="p-3">
+    <div class="h4">
+        Als nächstes:
+    </div>
+    @if (NextItem != null)
+    {
+        <div class="lead">
+            @NextItem.Title
+        </div>
+        <div class="h5">
+            in: @NextItem.Start.ToLocalTime().TimeDelta() &shy; (@NextItem.Start.ToLocalTime().DayAndTime())
+        </div>
+    }
+    else
+    {
+        <div class="lead">Nichts</div>
+    }
+    
+</div>
+
+@code {
+
+    [Parameter]
+    public ProgramItem? NextItem { get; set; }
+
+}
