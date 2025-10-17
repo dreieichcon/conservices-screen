@@ -41,4 +41,16 @@ public class SunState
 
 	[JsonPropertyName("utc_offset")]
 	public int UtcOffset { get; set; }
+
+	public bool IsAfterDark()
+	{
+		var now = TimeOnly.FromDateTime(DateTime.UtcNow);
+		return now >= Sunset.AddHours(-1);
+	}
+
+	public bool IsBeforeSunrise()
+	{
+		var now = TimeOnly.FromDateTime(DateTime.UtcNow);
+		return now <= Sunrise.AddHours(1.5);
+	}
 }

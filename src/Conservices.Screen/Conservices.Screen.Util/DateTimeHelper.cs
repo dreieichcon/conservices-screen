@@ -53,9 +53,16 @@ public static class DateTimeHelper
 			sb.Append($"{FormatHours(delta.Hours)}");
 			return sb.ToString();
 		}
+
+		if (delta.TotalHours <= 1)
+		{
+			sb.Append($"{FormatMinutes(delta.Minutes)}");
+			return sb.ToString();
+		}
+		
 		
 		sb.Append($"{FormatHours(delta.Hours)} ");
-		sb.Append($"{FormatMinutes(delta.Minutes)}");
+		sb.Append($"{FormatMinutesWithZero(delta.Minutes)}");
 		
 		return sb.ToString();
 	}
@@ -77,5 +84,13 @@ public static class DateTimeHelper
 			> 1 => $"{minutes} Minuten",
 			1 => $"{minutes} Minute",
 			_ => "Jetzt",
+		};
+	
+	private static string FormatMinutesWithZero(int minutes)
+		=> minutes switch
+		{
+			> 1 => $"{minutes} Minuten",
+			1 => $"{minutes} Minute",
+			_ => "",
 		};
 }

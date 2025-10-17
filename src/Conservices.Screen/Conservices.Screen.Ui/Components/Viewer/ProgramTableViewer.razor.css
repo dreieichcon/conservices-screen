@@ -4,6 +4,7 @@
     max-width: 100% !important;
     overflow-y: scroll;
     background-color: var(--paper);
+    scrollbar-width: none; 
 }
 
 .table-view::-webkit-scrollbar {

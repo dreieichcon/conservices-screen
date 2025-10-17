@@ -1,6 +1,7 @@
 ﻿@using System.Text
 @using Conservices.Screen.Interfaces.Repositories
 @using Conservices.Screen.Interfaces.Timers
+@using Conservices.Screen.Models.Sun
 @inherits LayoutComponentBase
 @inject ITimerService TimerService
 @inject ISunRepository SunRepository
@@ -28,7 +29,7 @@
     protected override async Task OnInitializedAsync()
     {
         _theme = await GetTheme();
-        TimerService.TickFiveMinutes += async(_, _) => await OnFiveMinutesElapsed();
+        TimerService.TickFiveMinutes += async (_, _) => await OnFiveMinutesElapsed();
     }
 
     private async Task OnFiveMinutesElapsed()
@@ -39,10 +40,9 @@
 
     private async Task<MarkupString> GetTheme()
     {
-        var now = TimeOnly.FromDateTime(DateTime.UtcNow);
         var sunState = await SunRepository.GetSunStateAsync();
 
-        if (now >= sunState.Dusk || now < sunState.Sunrise)
+        if (sunState.IsAfterDark() || sunState.IsBeforeSunrise())
             return CompileThemeString(DarkTheme);
 
         return CompileThemeString(LightTheme);
@@ -67,23 +67,23 @@
     private Dictionary<string, string> LightTheme = new()
     {
         { "--background", "#FFFFFF" },
-        { "--paper", "#E0E0E0" },
-        { "--paper-highlight", "#EBEBEB"},
-        { "--paper-border", "#c2c2c2"},
-        { "--border-alpha", "#00000044"},
+        { "--paper", "#D0D0D0" },
+        { "--paper-highlight", "#EBEBEB" },
+        { "--paper-border", "#c2c2c2" },
+        { "--border-alpha", "#00000044" },
         { "--foreground", "#323031" },
-        { "--primary", "#0892A5"},
+        { "--primary", "#0892A5" },
     };
 
     private Dictionary<string, string> DarkTheme = new()
     {
         { "--background", "#222222" },
         { "--paper", "#333333" },
-        { "--paper-highlight", "#555555"},
+        { "--paper-highlight", "#555555" },
         { "--paper-border", "#666666" },
-        { "--border-alpha", "#FFFFFF44"},
+        { "--border-alpha", "#FFFFFF44" },
         { "--foreground", "#FFFF" },
-        { "--primary", "#0892A5"},
+        { "--primary", "#0892A5" },
     };
 
 }
