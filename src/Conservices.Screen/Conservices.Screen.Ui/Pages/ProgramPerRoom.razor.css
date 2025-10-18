@@ -22,8 +22,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 20vw !important;
-    max-height: 20vw !important;
+    width: 23vw !important;
+    max-height: 23vw !important;
 }
 
 .room{

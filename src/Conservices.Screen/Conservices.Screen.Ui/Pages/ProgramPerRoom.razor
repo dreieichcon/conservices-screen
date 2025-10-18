@@ -39,7 +39,7 @@
 
     private async Task ReloadProgramItems()
     {
-        ProgramItems = (await ProgramService.GetAllAsync(EventId)).Where(x => x.Start.Add(x.Duration) >= DateTime.Now);
+        ProgramItems = (await ProgramService.GetAllAsync(EventId)).Where(x => x.Start.Add(x.Duration) >= DateTime.UtcNow);
         await InvokeAsync(StateHasChanged);
     }
 

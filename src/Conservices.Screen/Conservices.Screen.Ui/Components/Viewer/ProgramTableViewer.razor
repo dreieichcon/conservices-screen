@@ -130,7 +130,7 @@
 
     private async Task ReloadProgramItems()
     {
-        ProgramItems = (await ProgramService.GetAllAsync(EventId)).Where(x => x.Start > DateTime.Now);
+        ProgramItems = (await ProgramService.GetAllAsync(EventId)).Where(x => x.Start > DateTime.UtcNow);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

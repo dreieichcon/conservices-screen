@@ -1,5 +1,6 @@
 ﻿services:
   conservices-screen:
+    platform: linux/amd64
     image: hub.demolite.de/demoreg/conservices-screen
     container_name: conservices-screen
     restart: always
