@@ -1,0 +1,38 @@
+@using System.Text
+<th style="@Style()" class="@(Small ? "h2" : "h0") font-weight-bold">
+    @ChildContent
+</th>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    
+    [Parameter]
+    public int? Width { get; set; }
+
+    [Parameter]
+    public double? PadLeft { get; set; } = 1;
+    
+    [Parameter]
+    public bool Small { get; set; }
+
+    public string Style()
+    {
+        var sb = new StringBuilder();
+
+        sb.Append("padding: 0.5rem;");
+
+        if (Width != null)
+        {
+            sb.Append($"width: {Width}% !important;");
+            sb.Append($"max-width: {Width}% !important;");
+        }
+
+        if (PadLeft != null)
+            sb.Append($"padding-left: {PadLeft}rem !important;");
+
+        return sb.ToString();
+    }
+    
+}

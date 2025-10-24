@@ -8,13 +8,13 @@
 
 @inherits AbstractTableViewer<ProgramItem>
 
-<TableViewer>
+<TableViewer Class="@Class">
     <TableHead>
         <tr>
-            <th class="col-title">Titel</th>
-            <th class="col-type">Typ</th>
-            <th class="col-place">Ort</th>
-            <th class="">Startzeit</th>
+            <HeaderCell Width="55" PadLeft="1">Titel</HeaderCell>
+            <HeaderCell>Typ</HeaderCell>
+            <HeaderCell PadLeft="3">Ort</HeaderCell>
+            <HeaderCell>Startzeit</HeaderCell>
         </tr>
     </TableHead>
     <TableBody>
@@ -36,5 +36,8 @@
     {
         Items = (await ProgramService.GetAllAsync(EventId)).Where(x => x.Start > DateTime.UtcNow);
     }
+    
+    [Parameter]
+    public string Class { get; set; } = string.Empty;
     
 }

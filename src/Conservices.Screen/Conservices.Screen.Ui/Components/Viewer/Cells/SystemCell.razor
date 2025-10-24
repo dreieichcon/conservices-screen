@@ -1,0 +1,29 @@
+@using System.Text
+
+<td class="td-size">
+    <div class="h3 mw-100 w-100 d-flex align-items-center">
+        @SystemText()
+    </div>
+</td>
+
+@code {
+
+    [Parameter]
+    public required string System { get; set; }
+    
+    [Parameter]
+    public string? Version { get; set; }
+
+    private MarkupString SystemText()
+    {
+        var sb = new StringBuilder();
+        
+        sb.Append(System);
+
+        if (Version != null && !System.Contains(Version))
+            sb.Append($" <wbr>{Version}");
+        
+        return (MarkupString)sb.ToString();
+    }
+    
+}

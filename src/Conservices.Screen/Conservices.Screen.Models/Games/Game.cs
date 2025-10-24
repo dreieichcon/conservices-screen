@@ -20,7 +20,7 @@ public class Game : IHasStartTime
 	public string System { get; set; } = string.Empty;
 
 	[JsonPropertyName("system_version")]
-	public object SystemVersion { get; set; } = string.Empty;
+	public string? SystemVersion { get; set; } = string.Empty;
 
 	[JsonPropertyName("chars")]
 	public string Characters { get; set; } = string.Empty;

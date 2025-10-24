@@ -9,18 +9,6 @@
 @inject IDisplaySyncService DisplaySyncService
 @inject ITimerService TimerService
 
-<script>
-    window.scrollToElement = (elementId) => {
-        const element = document.getElementById(elementId);
-        if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-        }
-    };
-</script>
-
 @code{
 
     [Parameter]

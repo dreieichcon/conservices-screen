@@ -8,13 +8,16 @@
 
 @inherits AbstractTableViewer<Game>
 
-<TableViewer>
+<TableViewer Class="@Class">
     <TableHead>
         <tr>
-            <th class="col-title">Titel</th>
-            <th class="col-type">Typ</th>
-            <th class="col-place">Ort</th>
-            <th class="">Startzeit</th>
+            <HeaderCell Width="30" PadLeft="1" Small="true">Titel</HeaderCell>
+            <HeaderCell Width="14" Small="true">System</HeaderCell>
+            <HeaderCell Width="7" Small="true">Spieler</HeaderCell>
+            <HeaderCell Width="10" Small="true">Leiter</HeaderCell>
+            <HeaderCell Small="true">Ort</HeaderCell>
+            <HeaderCell Width="8" Small="true">Dauer</HeaderCell>
+            <HeaderCell Small="true">Start</HeaderCell>
         </tr>
     </TableHead>
     <TableBody>
@@ -22,8 +25,11 @@
         {
             <tr id="row-@index" class="@GetRowClass(index, Items.Count())">
                 <TitleCellWithAge MinimumAge="@item.AgeMin" Title="@item.Title"/>
-                <LabelCell Labels="@item.Labels"/>
+                <SystemCell System="@item.System" Version="@item.SystemVersion"/>    
+                <FreeSeatsCell Max="@item.PlayerMax" Current="@item.Players.Count"/>
+                <GameMasterCell User="@item.GameMaster" Alias="@item.AliasGameMaster"/>
                 <TableCell Tables="@item.Tables"/>
+                <DurationCell Duration="@item.Duration"/>
                 <StartTimeCell StartTimeUtc="@item.Start" IsOnlyOneDay="@IsOnlyOneDay()"/>
             </tr>  
         }
@@ -37,5 +43,8 @@
     {
         Items = (await GameService.GetAllAsync(EventId)).Where(x => x.Start > DateTime.UtcNow);
     }
+    
+    [Parameter]
+    public string Class { get; set; } = string.Empty;
     
 }

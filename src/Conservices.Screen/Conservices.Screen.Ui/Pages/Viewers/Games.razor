@@ -25,6 +25,7 @@
     protected override async Task OnInitializedAsync()
     {
         Convention = await ConventionService.GetAsync(EventId);
+        await InvokeAsync(StateHasChanged);
     }
 
     private Convention? Convention { get; set; }

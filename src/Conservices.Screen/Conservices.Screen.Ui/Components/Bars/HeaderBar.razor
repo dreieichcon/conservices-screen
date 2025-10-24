@@ -4,13 +4,16 @@
 @inject ITimerService TimerService
 
 <div class="d-flex flex-row justify-content-between header-bar align-items-center">
-    <div class="header-image-name">
-        <div class="header-image-container">
-            <img src="https://conservices.de/assets/img/events/@Convention.logo"
-                 alt="Logo for @Convention.Name"/>
+    @if (Convention != null)
+    {
+        <div class="header-image-name">
+            <div class="header-image-container">
+                <img src="https://conservices.de/assets/img/events/@Convention.logo"
+                     alt="Logo for @Convention.Name"/>
+            </div>
+            <div class="header-text">@Convention.Name</div>
         </div>
-        <div class="header-text">@Convention.Name</div>
-    </div>
+    }
     <div class="header-text">@DateTime.UtcNow.ToLocal().ToString("HH:mm:ss")</div>
 </div>
 
@@ -18,7 +21,7 @@
 @code {
 
     [Parameter]
-    public required Convention Convention { get; set; }
+    public Convention? Convention { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

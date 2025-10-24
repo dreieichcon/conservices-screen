@@ -1,0 +1,23 @@
+@using Conservices.Screen.Models.Games
+@using Conservices.Screen.Util
+
+<td class="td-size">
+    <div class="h3 mw-100 w-100 d-flex align-items-center">
+        @GameMasterText()
+    </div>
+</td>
+
+@code {
+
+    [Parameter]
+    public required GameMaster User { get; set; }
+    
+    [Parameter]
+    public string? Alias { get; set; }
+
+    private MarkupString GameMasterText()
+    {
+        return (MarkupString)(Alias ?? User.Name).FormatUserName();
+    }
+    
+}

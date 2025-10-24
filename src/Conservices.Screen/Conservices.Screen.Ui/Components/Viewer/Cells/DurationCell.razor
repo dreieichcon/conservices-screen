@@ -1,0 +1,29 @@
+@using System.Text
+<td class="td-size">
+    <div class="h2 mw-100 w-100 d-flex align-items-center justify-content-center">
+        @DurationText()
+    </div>
+</td>
+
+@code {
+
+    [Parameter]
+    public TimeSpan Duration { get; set; }
+
+    public MarkupString DurationText()
+    {
+        var sb = new StringBuilder();
+
+        if (Duration is { Hours: > 0, Minutes: 0 })
+            sb.Append($"{Duration.Hours} Std. ");
+
+        else if (Duration is { Hours: > 0, Minutes: > 0 })
+            sb.Append($"{Duration.Hours} Std.<br>{Duration.Minutes} Min.");
+
+        if (Duration is {Hours : 0, Minutes: > 0})
+            sb.Append($"{Duration.Minutes} Min.");
+        
+        return (MarkupString)sb.ToString();
+    }
+
+}

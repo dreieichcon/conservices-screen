@@ -14,7 +14,7 @@ public class TimerService : ITimerService
 
 	private const int TimePerItem = 5;
 
-	private const int TimePerPage = 5 * 20;
+	private const int TimePerPage = TimePerItem * 20;
 
 	public event EventHandler? TickSecond;
 

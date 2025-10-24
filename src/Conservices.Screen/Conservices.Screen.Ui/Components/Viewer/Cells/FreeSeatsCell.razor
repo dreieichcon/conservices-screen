@@ -1,0 +1,17 @@
+<td class="td-size">
+    <div class="h2 mw-100 w-100 d-flex align-items-center justify-content-center" style="@PlayerStyle">
+        @Current / @Max
+    </div>
+</td>
+
+@code {
+
+    [Parameter]
+    public required int Max { get; set; }
+    
+    [Parameter]
+    public required int Current { get; set; }
+
+    private string PlayerStyle => Current < Max ? "color: var(--success);" : "";
+
+}

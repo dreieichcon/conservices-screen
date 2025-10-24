@@ -1,16 +1,18 @@
 @using Conservices.Screen.Models.Misc
-<td class="td-size td-place">
-    <div class="d-flex flex-row-reverse justify-content-between w-100 align-items-center h-100">
-        <div class="td-text-large mw-75 w-75">
-            @GetTableNames()
+<td class="td-size">
+    <div class="d-flex flex-row justify-content-between mw-100 w-100 align-items-center h-100">
+        <div class="h2 mw-75 w-75">
+            @((MarkupString)GetTableNames())
         </div>
-        <div class="flex-lg-row">
-            @if (IsAccessible())
-            {
-                <div class="wheelchair">
+        <div class="flex-lg-row w-25">
+
+            <div class="wheelchair">
+                @if (IsAccessible())
+                {
                     <RadzenIcon Icon="Accessible_Forward" Style="font-size: 3rem;"/>
-                </div>
-            }
+                }
+            </div>
+
         </div>
     </div>
 </td>
@@ -20,8 +22,17 @@
     [Parameter]
     public IEnumerable<Table> Tables { get; set; } = [];
 
+    [Parameter]
+    public bool IsSingleOnly { get; set; } = true;
+
     private string GetTableNames()
-        => Tables.FirstOrDefault()?.Name ?? string.Empty;
+    {
+        if (IsSingleOnly)
+            return Tables.FirstOrDefault()
+                ?.Name ?? string.Empty;
+
+        return string.Join("<wbr>", Tables.Select(x => x.Name));
+    }
 
     private bool IsAccessible()
         => Tables.Any(x => x.Accessible);

@@ -1,0 +1,52 @@
+@page "/event/{EventId}/programAndGames"
+@using Conservices.Screen.Interfaces.Conservices
+@using Conservices.Screen.Interfaces.Display
+@using Conservices.Screen.Models.Convention
+@using Conservices.Screen.Models.Enum
+
+@inject IConventionService ConventionService
+@inject IDisplaySyncService DisplaySyncService
+
+
+<div class="d-flex flex-column justify-content-between w-100 h-100">
+    <HeaderBar Convention="@Convention"/>
+    @if (IsCurrentlyActive(ActiveDisplay.Program))
+    {
+        <ProgramTableViewer EventId="@EventId"/>
+    }
+    else
+    {
+        <GameTableViewer EventId="@EventId"/>
+    }
+    
+    <FooterBar>
+        <div>
+            @ActiveDisplayString
+        </div>
+        <div>
+            @(DisplaySyncService.DisplayIndex + 1) / @DisplaySyncService.MaxIndex
+        </div>
+    </FooterBar>
+</div>
+
+@code {
+
+    [Parameter]
+    public required string EventId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Convention = await ConventionService.GetAsync(EventId);
+        DisplaySyncService.DisplayChanged += async (_, _) => await InvokeAsync(StateHasChanged);
+        DisplaySyncService.PageChanged += async (_, _) => await InvokeAsync(StateHasChanged);
+    }
+
+    private Convention? Convention { get; set; }
+
+    private bool IsCurrentlyActive(ActiveDisplay display)
+        => DisplaySyncService.ActiveDisplay == display;
+
+    private string ActiveDisplayString
+        => DisplaySyncService.ActiveDisplay == ActiveDisplay.Program ? "Programm" : "Spielrunden";
+
+}
