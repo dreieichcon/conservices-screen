@@ -1,0 +1,25 @@
+@using Conservices.Screen.Models.Misc
+
+<td class="td-size">
+    <div class="td-text-large">
+        @GetLabel()
+    </div>
+</td>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<Label> Labels { get; set; } = [];
+
+    [Parameter]
+    public bool IsFirstOnly { get; set; } = true;
+
+    private string GetLabel()
+    {
+        if (IsFirstOnly)
+            return Labels.FirstOrDefault()?.Name ?? string.Empty;
+
+        return string.Join(", ", Labels.Select(x => x.Name));
+    }
+
+}

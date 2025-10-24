@@ -30,6 +30,9 @@ builder.Services.AddSingleton<IConventionService, ConventionService>();
 builder.Services.AddSingleton<IProgramRepository, ProgramRepository>();
 builder.Services.AddSingleton<IProgramService, ProgramService>();
 
+builder.Services.AddSingleton<IGameRepository, GameRepository>();
+builder.Services.AddSingleton<IGameService, GameService>();
+
 var app = builder.Build();
 
 // initialize Timer

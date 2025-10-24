@@ -1,0 +1,29 @@
+@using Conservices.Screen.Util
+<td class="td-size td-time">
+    <div class="d-flex flex-column">
+        <div class="time-start">
+            @if (IsOnlyOneDay)
+            {
+                @StartTimeUtc.ToLocalTime().ToString("HH:mm")
+            }
+            else
+            {
+                @StartTimeUtc.ToLocalTime().DayAndTime()
+            }
+        </div>
+        <div class="time-delta">
+            @StartTimeUtc.TimeDelta()
+        </div>
+    </div>
+</td>
+
+
+@code {
+
+    [Parameter]
+    public DateTime StartTimeUtc { get; set; }
+    
+    [Parameter]
+    public bool IsOnlyOneDay { get; set; }
+
+}

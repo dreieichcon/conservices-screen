@@ -1,0 +1,35 @@
+<td class="td-size td-title">
+    <div class="d-flex flex-row justify-content-between w-100">
+        <div class="title-container">@Title</div>
+        <div class="age-container">
+            @switch (MinimumAge)
+            {
+                case >= 18:
+                    <div class="age age-18">
+                        <div class="rotate-back">
+                            18
+                        </div>
+                    </div>
+                    break;
+
+                case >= 16:
+                    <div class="age age-16">
+                        <div class="rotate-back">
+                            16
+                        </div>
+                    </div>
+                    break;
+            }
+        </div>
+    </div>
+</td>
+
+@code {
+
+    [Parameter]
+    public int MinimumAge { get; set; } = 0;
+    
+    [Parameter]
+    public required string Title { get; set; }
+
+}

@@ -1,0 +1,83 @@
+@using System.Text
+@using Conservices.Screen.Interfaces.Display
+@using Conservices.Screen.Interfaces.Timers
+@using Microsoft.JSInterop
+
+@typeparam T where T: Conservices.Screen.Models.Interfaces.IHasStartTime
+
+@inject IJSRuntime JsRuntime
+@inject IDisplaySyncService DisplaySyncService
+@inject ITimerService TimerService
+
+<script>
+    window.scrollToElement = (elementId) => {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    };
+</script>
+
+@code{
+
+    [Parameter]
+    public required string EventId { get; set; }
+
+    protected IEnumerable<T> Items { get; set; } = [];
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await ReloadItems();
+        TimerService.TickPage += async (_, _) => await ReloadItems();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    protected virtual Task ReloadItems() => Task.CompletedTask;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            DisplaySyncService.DisplayChanged += async (_, _) => await ScrollToActiveRow();
+    }
+
+    protected string GetRowClass(int index, int count)
+    {
+        var sb = new StringBuilder("row-style ");
+
+        sb.Append(IsActiveCell(index, count) ? "row-active el-4" : "row-inactive");
+
+        return sb.ToString();
+    }
+
+    private bool IsActiveCell(int index, int count)
+    {
+        if (count >= DisplaySyncService.MaxIndex)
+            return index == DisplaySyncService.DisplayIndex;
+
+        return index == DisplaySyncService.DisplayIndex % count;
+    }
+
+    private async Task ScrollToActiveRow()
+    {
+        try
+        {
+            await JsRuntime.InvokeVoidAsync("scrollToElement", $"row-{DisplaySyncService.DisplayIndex}");
+        }
+        catch
+        {
+            // do nothing
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+    
+    protected bool IsOnlyOneDay()
+    {
+        return Items.GroupBy(x => x.Start.DayOfWeek)
+            .Count() == 1;
+    }
+
+}

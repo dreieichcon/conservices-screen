@@ -1,0 +1,41 @@
+.td-title{
+    font-size: 2.5rem;
+    padding-left: 1rem;
+}
+
+.title-container{
+    max-width: 85% !important;
+    width: 85% !important;
+}
+
+.age-container{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.age{
+    height: 5rem;
+    aspect-ratio: 1/1;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transform: rotate(45deg);
+}
+
+.age-16{
+    background: #35A9E5;
+    border: 3px solid #2d7FAB;
+}
+
+.age-18{
+    background: #EE161F88;
+    border: 3px solid #B2161E;
+}
+
+.rotate-back{
+    transform: rotate(-45deg);
+}

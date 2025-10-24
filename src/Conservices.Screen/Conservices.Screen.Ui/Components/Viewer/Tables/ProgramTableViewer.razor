@@ -1,0 +1,40 @@
+@using Conservices.Screen.Interfaces.Conservices
+@using Conservices.Screen.Ui.Components.Viewer.Core
+@using Conservices.Screen.Models.Program
+@using Conservices.Screen.Ui.Components.Viewer.Cells
+@using Conservices.Screen.Util
+
+@inject IProgramService ProgramService
+
+@inherits AbstractTableViewer<ProgramItem>
+
+<TableViewer>
+    <TableHead>
+        <tr>
+            <th class="col-title">Titel</th>
+            <th class="col-type">Typ</th>
+            <th class="col-place">Ort</th>
+            <th class="">Startzeit</th>
+        </tr>
+    </TableHead>
+    <TableBody>
+        @foreach (var (item, index) in Items.WithIterator())
+        {
+            <tr id="row-@index" class="@GetRowClass(index, Items.Count())">
+                <TitleCellWithAge MinimumAge="@item.MinimumAge" Title="@item.Title"/>
+                <LabelCell Labels="@item.Labels"/>
+                <TableCell Tables="@item.Tables"/>
+                <StartTimeCell StartTimeUtc="@item.Start" IsOnlyOneDay="@IsOnlyOneDay()"/>
+            </tr>  
+        }
+    </TableBody>
+</TableViewer>
+
+@code {
+
+    protected override async Task ReloadItems()
+    {
+        Items = (await ProgramService.GetAllAsync(EventId)).Where(x => x.Start > DateTime.UtcNow);
+    }
+    
+}

@@ -1,22 +1,22 @@
-@page "/event/{EventId}/program"
+@page "/event/{EventId}/games"
 @using Conservices.Screen.Interfaces.Conservices
 @using Conservices.Screen.Models.Convention
 
 @inject IConventionService ConventionService
 
-
 <div class="d-flex flex-column justify-content-between w-100 h-100">
     <HeaderBar Convention="@Convention"/>
-    <ProgramTableViewer EventId="@EventId"/>
+    <GameTableViewer EventId="@EventId"/>
     <FooterBar>
         <div>
-            Programm
+            Spielrunden
         </div>
         <div>
             
         </div>
     </FooterBar>
 </div>
+
 @code {
 
     [Parameter]

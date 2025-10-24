@@ -5,4 +5,6 @@ public interface IDisplaySyncService
 	public event EventHandler? DisplayChanged;
 	
 	public int DisplayIndex { get; set; }
+	
+	public int MaxIndex { get; }
 }

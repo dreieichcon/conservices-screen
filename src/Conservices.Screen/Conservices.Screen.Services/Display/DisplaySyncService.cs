@@ -5,7 +5,7 @@ namespace Conservices.Screen.Services.Display;
 
 public class DisplaySyncService : IDisplaySyncService
 {
-	private const int MaxIndex = 20;
+	public int MaxIndex => 20;
 	
 	public event EventHandler? DisplayChanged;
 

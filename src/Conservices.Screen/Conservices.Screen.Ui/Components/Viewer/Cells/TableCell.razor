@@ -1,0 +1,29 @@
+@using Conservices.Screen.Models.Misc
+<td class="td-size td-place">
+    <div class="d-flex flex-row-reverse justify-content-between w-100 align-items-center h-100">
+        <div class="td-text-large mw-75 w-75">
+            @GetTableNames()
+        </div>
+        <div class="flex-lg-row">
+            @if (IsAccessible())
+            {
+                <div class="wheelchair">
+                    <RadzenIcon Icon="Accessible_Forward" Style="font-size: 3rem;"/>
+                </div>
+            }
+        </div>
+    </div>
+</td>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<Table> Tables { get; set; } = [];
+
+    private string GetTableNames()
+        => Tables.FirstOrDefault()?.Name ?? string.Empty;
+
+    private bool IsAccessible()
+        => Tables.Any(x => x.Accessible);
+
+}

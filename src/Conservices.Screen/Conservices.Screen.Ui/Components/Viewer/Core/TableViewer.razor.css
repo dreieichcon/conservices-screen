@@ -1,0 +1,25 @@
+.table-view{
+    height: 78vh !important;
+    max-height: 75vh !important;
+    max-width: 100% !important;
+    overflow-y: scroll;
+    background-color: var(--paper);
+    scrollbar-width: none;
+}
+
+.table-view::-webkit-scrollbar {
+    display: none;
+}
+
+table{
+    table-layout: fixed;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+thead{
+    position: sticky; top: 0;
+    background-color: var(--paper);
+    font-size: 3rem;
+    z-index: 9999;
+}

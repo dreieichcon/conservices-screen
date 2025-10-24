@@ -1,9 +1,10 @@
 using System.Text.Json.Serialization;
+using Conservices.Screen.Models.Interfaces;
 using Conservices.Screen.Models.Misc;
 
 namespace Conservices.Screen.Models.Program;
 
-public class ProgramItem
+public class ProgramItem : IHasStartTime
 {
 	[JsonPropertyName("id")]
 	public required string Id { get; set; }
