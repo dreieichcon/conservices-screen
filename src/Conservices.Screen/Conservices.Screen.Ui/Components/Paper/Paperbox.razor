@@ -1,0 +1,10 @@
+<div class="paper el-1 mobile-box d-flex flex-column w-25 align-items-center">
+    @ChildContent
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}

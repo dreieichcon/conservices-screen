@@ -1,0 +1,12 @@
+<a class="d-flex el-1 mobile-box paper justify-content-center w-25" href="@Href">
+    <div class="h2">@ChildContent</div>
+</a>
+
+@code {
+
+    [Parameter]
+    public required string Href { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

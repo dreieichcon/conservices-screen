@@ -1,0 +1,36 @@
+@page "/event/{EventId}/gamesPerBuilding"
+@using Conservices.Screen.Interfaces.Conservices
+@using Conservices.Screen.Models.Convention
+@using Conservices.Screen.Models.Misc
+
+@inject IGameService GameService
+
+<div class="d-flex w-100 h-100 flex-column align-items-center">
+    <Paperbox>
+        <div class="h2">
+            Select a building to display Games
+        </div>
+    </Paperbox>
+    @foreach (var building in Buildings)
+    {
+        <Navlink Href="@($"event/{EventId}/games/{building.Building}")">
+            @building.Building
+        </Navlink>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public required string EventId { get; set; }
+
+    public IEnumerable<Location> Buildings { get; set; } = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        Buildings = await GameService.GetAllBuildings(EventId);
+    }
+
+    private Convention? Convention { get; set; }
+
+}

@@ -1,0 +1,36 @@
+@page "/event/{EventId}/games/{Building}"
+@using Conservices.Screen.Interfaces.Conservices
+@using Conservices.Screen.Models.Convention
+
+@inject IConventionService ConventionService
+
+<div class="d-flex flex-column justify-content-between w-100 h-100">
+    <HeaderBar Convention="@Convention"/>
+    <GameTableViewer EventId="@EventId" Building="@Building"/>
+    <FooterBar>
+        <div>
+            Spielrunden
+        </div>
+        <div>
+            @Building
+        </div>
+    </FooterBar>
+</div>
+
+@code {
+
+    [Parameter]
+    public required string EventId { get; set; }
+    
+    [Parameter]
+    public required string Building { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Convention = await ConventionService.GetAsync(EventId);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private Convention? Convention { get; set; }
+
+}

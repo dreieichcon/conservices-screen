@@ -8,7 +8,7 @@
 
 @inherits AbstractTableViewer<Game>
 
-<TableViewer Class="@Class">
+<TableViewer>
     <TableHead>
         <tr>
             <HeaderCell Width="30" PadLeft="1" Small="true">Titel</HeaderCell>
@@ -39,12 +39,20 @@
 @code {
 
     
+    [Parameter]
+    public string? Building { get; set; }
+    
     protected override async Task ReloadItems()
     {
-        Items = (await GameService.GetAllAsync(EventId)).Where(x => x.Start > DateTime.UtcNow);
+        var items = (await GameService.GetAllAsync(EventId)).Where(x => x.Start > DateTime.UtcNow);
+
+        if (Building != null)
+            items = items.Where(x => x.Tables.Any(t => t.Location.Building == Building));
+
+        Items = items;
     }
     
-    [Parameter]
-    public string Class { get; set; } = string.Empty;
+
+    
     
 }
