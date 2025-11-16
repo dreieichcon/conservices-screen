@@ -15,6 +15,7 @@
     max-height: 10vh !important;
     height: 10vh !important;
     width: 10vh !important;
+    background: var(--background-image);
 }
 
 .header-image-container img{
